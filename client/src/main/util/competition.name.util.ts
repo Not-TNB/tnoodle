@@ -4,11 +4,10 @@ export const getDefaultCompetitionName = () => {
 };
 
 export const competitionName2Id = (competitionName: string) => {
-    // fold accents to ASCII before stripping so accented Latin characters are not dropped
-    // (see thewca/tnoodle#923)
+    // fold accents to ASCII before stripping so accented characters are not dropped
 
-    // TODO: NFD only decomposes Latin diacritics, so
-    // chars like æ or ø still won't match WCA transliteration
+    // TODO: only folds accents NFD decomposes into a base letter + combining mark
+    // (á -> a); characters it doesn't decompose (ø, ß, etc.) are still dropped
     return competitionName
         .normalize("NFD")                // split into base char and accent
         .replace(/[\u0300-\u036f]/g, "") // remove accents
