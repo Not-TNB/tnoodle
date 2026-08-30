@@ -39,6 +39,12 @@ export const wcifSlice = createSlice({
                 id,
             };
         },
+        setCompetitionId: (state, action: PayloadAction<string>) => {
+            state.wcif = {
+                ...state.wcif,
+                id: action.payload,
+            };
+        },
         setWcifEvent: (state, action: PayloadAction<WcifEvent>) => {
             state.wcif = {
                 ...state.wcif,
@@ -88,6 +94,7 @@ export const wcifSlice = createSlice({
 
 export const {
     setCompetitionName,
+    setCompetitionId,
     setWcifEvent,
     setWcaEvents,
     setWcaFormats,

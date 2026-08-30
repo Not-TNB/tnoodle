@@ -14,7 +14,11 @@ import {
     setSuggestedFmcTranslations,
 } from "../redux/slice/EventDataSlice";
 import { setFileZip } from "../redux/slice/ScramblingSlice";
-import { setCompetitionName, setWcif } from "../redux/slice/WcifSlice";
+import {
+    setCompetitionName,
+    setWcif,
+    setCompetitionId,
+} from "../redux/slice/WcifSlice";
 import { getDefaultCompetitionName } from "../util/competition.name.util";
 import {
     deleteParameter,
@@ -167,6 +171,9 @@ const SideBar = () => {
             dispatch(setIsManualSelection(false));
             dispatch(setWcif(wcif));
             dispatch(setCompetitionName(wcif.name));
+            // setCompetitionName derives an id from the name
+            // (for manual entry); otherwise we use the WCIF id instead
+            dispatch(setCompetitionId(wcif.id));
             dispatch(setFileZip());
         },
         [dispatch]
