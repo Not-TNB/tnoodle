@@ -9,7 +9,7 @@ export const competitionName2Id = (competitionName: string) => {
     // TODO: only folds accents NFD decomposes into a base letter + combining mark
     // (á -> a); characters it doesn't decompose (ø, ß, etc.) are still dropped
     return competitionName
-        .normalize("NFD")                // split into base char and accent
+        .normalize("NFD") // split into base char and accent
         .replace(/[\u0300-\u036f]/g, "") // remove accents
         .replace(/[\W]/gi, "");
 };
