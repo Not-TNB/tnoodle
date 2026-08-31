@@ -124,6 +124,7 @@ const SideBar = () => {
         dispatch(setWcif({ ...defaultWcif }));
         dispatch(setBestMbldAttempt());
         dispatch(setCompetitionName(getDefaultCompetitionName()));
+        dispatch(setCompetitionId("")); // derive id from name
         dispatch(setFileZip());
         dispatch(setSuggestedFmcTranslations());
 
@@ -171,8 +172,6 @@ const SideBar = () => {
             dispatch(setIsManualSelection(false));
             dispatch(setWcif(wcif));
             dispatch(setCompetitionName(wcif.name));
-            // setCompetitionName derives an id from the name
-            // (for manual entry); otherwise we use the WCIF id instead
             dispatch(setCompetitionId(wcif.id));
             dispatch(setFileZip());
         },

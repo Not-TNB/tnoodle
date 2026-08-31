@@ -30,19 +30,19 @@ export const wcifSlice = createSlice({
     reducers: {
         setCompetitionName: (state, action: PayloadAction<string>) => {
             const competitionName = action.payload;
-            const id = competitionName2Id(competitionName);
 
             state.wcif = {
                 ...state.wcif,
                 name: competitionName,
                 shortName: competitionName,
-                id,
             };
         },
         setCompetitionId: (state, action: PayloadAction<string>) => {
+            // fallback to deriving from competition name if empty id is provided
+            const id = action.payload || competitionName2Id(state.wcif.name);
             state.wcif = {
                 ...state.wcif,
-                id: action.payload,
+                id,
             };
         },
         setWcifEvent: (state, action: PayloadAction<WcifEvent>) => {
