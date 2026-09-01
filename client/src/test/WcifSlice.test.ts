@@ -25,17 +25,6 @@ describe("WcifSlice", () => {
         expect(store.getState().wcifSlice.wcif.id).toBe("WC2026");
     });
 
-    it("derives competition id from the name when there is no given id", () => {
-        const store = getNewStore();
-
-        store.dispatch(setCompetitionName("WCA World Championship 2026"));
-        store.dispatch(setCompetitionId(""));
-
-        expect(store.getState().wcifSlice.wcif.id).toBe(
-            "WCAWorldChampionship2026"
-        );
-    });
-
     it("setCompetitionName does not change the competition id", () => {
         const store = getNewStore();
 

@@ -19,7 +19,10 @@ import {
     setWcif,
     setCompetitionId,
 } from "../redux/slice/WcifSlice";
-import { getDefaultCompetitionName } from "../util/competition.name.util";
+import {
+    getDefaultCompetitionName,
+    competitionName2Id,
+} from "../util/competition.name.util";
 import {
     deleteParameter,
     getQueryParameter,
@@ -123,8 +126,9 @@ const SideBar = () => {
         dispatch(setIsManualSelection(true));
         dispatch(setWcif({ ...defaultWcif }));
         dispatch(setBestMbldAttempt());
-        dispatch(setCompetitionName(getDefaultCompetitionName()));
-        dispatch(setCompetitionId("")); // derive id from name
+        const defaultName = getDefaultCompetitionName();
+        dispatch(setCompetitionName(defaultName));
+        dispatch(setCompetitionId(competitionName2Id(defaultName)));
         dispatch(setFileZip());
         dispatch(setSuggestedFmcTranslations());
 

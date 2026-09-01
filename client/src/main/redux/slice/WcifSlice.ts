@@ -3,7 +3,6 @@ import WcaEvent from "../../model/WcaEvent";
 import WcaFormat from "../../model/WcaFormat";
 import Wcif from "../../model/Wcif";
 import WcifEvent from "../../model/WcifEvent";
-import { competitionName2Id } from "../../util/competition.name.util";
 import {
     copiesExtensionId,
     fmcTranslationsExtensionId,
@@ -38,11 +37,9 @@ export const wcifSlice = createSlice({
             };
         },
         setCompetitionId: (state, action: PayloadAction<string>) => {
-            // fallback to deriving from competition name if empty id is provided
-            const id = action.payload || competitionName2Id(state.wcif.name);
             state.wcif = {
                 ...state.wcif,
-                id,
+                id: action.payload,
             };
         },
         setWcifEvent: (state, action: PayloadAction<WcifEvent>) => {
